@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskHive.API", "TaskHive.API\TaskHive.API.csproj", "{79DB174D-1414-4256-B2D2-B727B87CB949}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskHive.API.Tests", "TaskHive.API.Tests\TaskHive.API.Tests.csproj", "{DE20EA62-C85E-415F-8EE8-F918615E0192}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{79DB174D-1414-4256-B2D2-B727B87CB949}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{79DB174D-1414-4256-B2D2-B727B87CB949}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{79DB174D-1414-4256-B2D2-B727B87CB949}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{79DB174D-1414-4256-B2D2-B727B87CB949}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DE20EA62-C85E-415F-8EE8-F918615E0192}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DE20EA62-C85E-415F-8EE8-F918615E0192}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DE20EA62-C85E-415F-8EE8-F918615E0192}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DE20EA62-C85E-415F-8EE8-F918615E0192}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1767875D-E794-4474-943D-B981C294EECD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1767875D-E794-4474-943D-B981C294EECD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1767875D-E794-4474-943D-B981C294EECD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1767875D-E794-4474-943D-B981C294EECD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
