@@ -38,6 +38,18 @@ public static class LoggerExtensions
         logger.LogError("{Class}.{Method}(" + paramsString + ") ErrorMessages: [{ErrorMessages}]", [.. paramsArray, errorMessages]);
     }
 
+    public static void LogErrorMessages<T>(this ILogger<T> logger, string className, string methodName, Dictionary<string, object> parameters, string description, IEnumerable<string> errorMessages)
+    {
+        var paramsString = string.Join(", ", parameters.Select(kvp => kvp.Key.Capitalize() + ": {" + kvp.Key.Capitalize() + "}"));
+
+        var paramsArray = AddBaseParameters(className, methodName, parameters);
+        paramsArray.Append(errorMessages);
+
+        errorMessages = errorMessages.Select(m => $"\"{m}\"");
+
+        logger.LogError("{Class}.{Method}(" + paramsString + ") " + description + " ErrorMessages: [{ErrorMessages}]", [.. paramsArray, errorMessages]);
+    }
+
     private static object[] AddBaseParameters(string className, string methodName, Dictionary<string, object> parameters)
     {
         var baseParams = new List<object>() { className, methodName };

@@ -47,14 +47,28 @@ public class AccountService(AppSettings appSettings, IUserManagerProvider userMa
         user.CreatedByUserId = createdByUserId;
         user.ModifiedByUserId = createdByUserId;
 
-        var identityResult = await userManagerProvider.CreateAsync(user, password);
+        var createIdentityResult = await userManagerProvider.CreateAsync(user, password);
 
-        if (!identityResult.Succeeded)
+        if (!createIdentityResult.Succeeded)
         {
-            var errorMessages = identityResult.Errors.Select(error => error.Description);
+            var errorMessages = createIdentityResult.Errors.Select(error => error.Description);
             logger.LogErrorMessages(nameof(AccountService), nameof(RegisterAsync), logParams, errorMessages);
 
             return Result.Failure<User>("Failed to register user", ErrorCode.InternalServerError, "Something went wrong while trying to register the user.");
+        }
+
+        var addToRoleIdentityResult = await userManagerProvider.AddToRoleAsync(user, nameof(RoleNames.User)); 
+
+        if (!addToRoleIdentityResult.Succeeded)
+        {
+            await userManagerProvider.DeleteAsync(user);
+
+            var errorMessages = addToRoleIdentityResult.Errors.Select(error => error.Description);
+            var errorDescription = $"The User could not be added to the role {nameof(RoleNames.User)}. The created User was deleted.";
+
+            logger.LogErrorMessages(nameof(AccountService), nameof(RegisterAsync), logParams, errorDescription, errorMessages);
+
+            return Result.Failure<User>(errorDescription, ErrorCode.UnexpectedError, "Something went wrong when registering the user."); 
         }
 
         logParams.Add("CreatedUserId", user.Id);
